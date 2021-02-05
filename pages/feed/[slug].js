@@ -9,6 +9,7 @@ export const Feed = ({pageNumber, articles}) =>{
         <>
         <Head>
             <title>{articles.articles[pageNumber - 1].title}</title>
+            <meta property="og:image" content={urlToImage}></meta>
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <Toolbar />

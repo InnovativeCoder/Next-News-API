@@ -3,7 +3,6 @@ import { Toolbar } from "../components/toolbar"
 import styles from "../styles/EOM.module.css"
 
 export function EOM({employee}) {
-    console.log(employee.results[0])
     return (
         <>
         <Head>

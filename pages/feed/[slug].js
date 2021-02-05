@@ -1,22 +1,32 @@
+import Head from "next/head"
+import { Toolbar } from "../../components/toolbar"
+import styles from "../../styles/Feed.module.css"
+
 export const Feed = ({pageNumber, articles}) =>{
-    console.log(pageNumber)
-    console.log(articles.articles[pageNumber - 1])
+    const urlToImage= articles.articles[pageNumber - 1].urlToImage
+    
     return(
-        <div>
-            Hello World
+        <>
+        <Head>
+            <title>{articles.articles[pageNumber - 1].title}</title>
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Toolbar />
+        <div className={styles.main}>
+            <h1>{articles.articles[pageNumber - 1].title}</h1>
+            <h3>{articles.articles[pageNumber - 1].description}</h3>
+            <p>{articles.articles[pageNumber - 1].url}</p>
+            <img src={urlToImage} />
+            <h1>{articles.articles[pageNumber - 1].title}</h1>
         </div>
+        </>
     )
 }
 
 export const getServerSideProps = async pageContext =>{
-    const pageNumber = pageContext.query.slug;
+    let pageNumber = pageContext.query.slug;
     if(!pageNumber || pageNumber<1 || pageNumber > 5 ){
-        return{
-            props: {
-                articles: [],
-                pageNumber: 1
-            }
-        }
+        pageNumber = 1
     }
 
     const apiResponse = await fetch(`https://newsapi.org/v2/top-headlines?country=in&pageSize=5&page=${pageNumber}&apiKey=2df6a769c9f749069db88d5e07cb0e00`)

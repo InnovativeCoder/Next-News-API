@@ -10,7 +10,6 @@ export const Toolbar = () => {
             <div onClick={()=>{router.push('/feed/1')}}>Feed</div>
             <div onClick={()=>{router.push('/eom')}}>EOM</div>
             <div onClick={()=>window.location.href="https://twitter.com/InnovativeCoder"}>Twitter</div>
-            <div>Twitter</div>
         </div>
     )
 }
